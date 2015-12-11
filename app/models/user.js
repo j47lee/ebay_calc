@@ -9,7 +9,9 @@ var userSchema = mongoose.Schema({
         list         : [
           { item : String,
             amount : Number,
-            retailer : String
+            retailer : String,
+            fee : Number,
+            net : Number
           }
         ]
 

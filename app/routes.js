@@ -38,16 +38,15 @@ module.exports = function(app, passport) {
     // use route middleware to verify user with isLoggedIn function
     app.get('/profile', isLoggedIn, function(req, res) {
 
-        // var total = 0;
-        // var array = req.user.list;
-        // for (var i = 0; i < array.length; i++) {
-        //   var toNumber = Number(array[i]);
-        //   total += toNumber;
-        // }
-        // req.user.total = total;
+        //fee calculator
+        for (var i = 0; i < req.user.list.length; i++) {
+          var amount = req.user.list[i].amount
+          var fee = amount * 0.15;
+          req.user.list[i].fee = fee;
+        }
 
         res.render('profile.ejs', {
-            user : req.user // get the user out of session and pass to template
+          user : req.user // get the user out of session and pass to template
         });
 
         // add to current user list
@@ -64,7 +63,9 @@ module.exports = function(app, passport) {
               console.log('Successfully saved');
               console.log(user);
             });
-            res.render('profile.ejs', { user : req.user });
+            // res.render('profile.ejs', { user : req.user });
+            res.redirect('/profile')
+            res.end();
           });
         }); // end POST /addItem
 

@@ -14,13 +14,12 @@
       <strong>id</strong>: <%= user._id %><br>
       <strong>email</strong>: <%= user.email %><br>
       <strong>password</strong>: <%= user.password %><br>
-      <strong>list</strong>: <%= user.list %>
     </p>
 
     <form action="/addItem" method="post">
+      <input type="text" name="retailer" placeholder='eBay'>
       <input type="text" name="item" placeholder='Samsung S6'>
       <input type="text" name="amount" placeholder='300.82'>
-      <input type="text" name="retailer" placeholder='eBay'>
       <button type="submit" id='addButton'>Add Item</button>
     </form>
 
@@ -29,16 +28,22 @@
     <table>
 
       <tr>
+        <th>Retailer</th>
         <th>Item</th>
         <th>Amount</th>
-        <th>Retailer</th>
+        <th>Fees</th>
+        <th>Net</th>
+        <th>Edit</th>
       </tr>
 
       <% for (var i = 0; i < user.list.length; i++) { %>
         <tr>
+          <td><%= user.list[i].retailer %></td>
           <td><%= user.list[i].item %></td>
           <td><%= user.list[i].amount %></td>
-          <td><%= user.list[i].retailer %></td>
+          <td><%= user.list[i].fee %></td>
+          <td><%= user.list[i].amount - user.list[i].fee %></td>
+          <td>Edit Item</td>
         </tr>
       <% } %>
 
