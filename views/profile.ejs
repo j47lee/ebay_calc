@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+
+  <script type="text/javascript" src='https://code.jquery.com/jquery-1.11.3.min.js'></script>
+  <script type="text/javascript" src='../assets/script.js'></script>
+
+  <body>
+    <a href='/logout'>Log Out</a>
+    <p>
+      <strong>id</strong>: <%= user._id %><br>
+      <strong>email</strong>: <%= user.email %><br>
+      <strong>password</strong>: <%= user.password %><br>
+      <strong>list</strong>: <%= user.list %>
+    </p>
+
+    <form action="/addItem" method="post">
+      <input type="text" name="item" placeholder='Samsung S6'>
+      <input type="text" name="amount" placeholder='300.82'>
+      <input type="text" name="retailer" placeholder='eBay'>
+      <button type="submit" id='addButton'>Add Item</button>
+    </form>
+
+    <hr>
+
+    <table>
+
+      <tr>
+        <th>Item</th>
+        <th>Amount</th>
+        <th>Retailer</th>
+      </tr>
+
+      <% for (var i = 0; i < user.list.length; i++) { %>
+        <tr>
+          <td><%= user.list[i].item %></td>
+          <td><%= user.list[i].amount %></td>
+          <td><%= user.list[i].retailer %></td>
+        </tr>
+      <% } %>
+
+    </table>
+
+
+  </body>
+</html>
